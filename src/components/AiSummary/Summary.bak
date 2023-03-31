@@ -1,0 +1,21 @@
+// this is a tsx file rename to use
+
+import {Button} from "@twilio-paste/core"
+import React from 'react';
+
+export default (props: any) => {
+  const {
+    message: {
+      isFromMe,
+      source: {
+        state: {
+          attributes: { sentiment },
+        },
+      },
+    },
+  } = props;
+
+  return (
+    (!isFromMe && <div>{ props.message.source.state.attributes.sentiment }</div>) || null
+  );
+};
