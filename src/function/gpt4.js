@@ -4,7 +4,6 @@
 //also twilio-flex-token-validator version latest
 // under enviromental variables add API_KEY and use your openaikey get it from here https://platform.openai.com/account/api-keys
 //under enviromental variables add you could also add the model under API_MODEL , if not it will default to gpt3.5 turbo.
-
 const TokenValidator = require('twilio-flex-token-validator').functionValidator;
 	 
 exports.handler = TokenValidator(function(context, event, callback) {
@@ -49,15 +48,24 @@ exports.handler = TokenValidator(function(context, event, callback) {
       prompt = `write me a short summary , max three lines of this: ${spokenInput}`;
     }
        if (requestType === "suggest" && eventcontext) {
-    prompt = `play a role game imagine that you are a customer service agent , I will ask you a question  if you think you can respond and it is response, then please respond with a short suggested response, DO NOT use a prefix with colon i.e suggested response,  here is my question : ${spokenInput} if relevant take into account the following information but only use it if is related to the question :  ${eventcontext}  `;
+    prompt = `play a role game imagine that you are a customer service agent , I will ask you a question  if you think you can respond and it is a good response, then please respond with a short suggested response, DO NOT use a prefix with colon i.e suggested response,  here is my question : ${spokenInput} if relevant take into account the following information but only use it if is related to the question :  ${eventcontext}  `;
   }
      if (requestType === "suggest" && !eventcontext) {
-    prompt = `play a role game imagine that you are a customer service agent , I will ask you a question  if you think you can respond and it is good enough , then please respond with three lines max , DO NOT use a prefix with colon i.e suggested response, here is my question : ${spokenInput}   `;
+    prompt = `play a role game imagine that you are a customer service agent , I will ask you a question  if you think you can respond and it is  a good enough response  , then please respond with three lines max , DO NOT use a prefix with colon i.e suggested response, here is my question : ${spokenInput}   `;
   }
-    if (requestType === "sentiment") {
-      prompt = `evaluate the sentiment of the customer on this interaction and tell me how the customer feels in two lines max using text and also an emoji  : ${spokenInput}`;
-    }
   
+
+
+if (requestType === "sentiment") {
+  /* original sentiment analysis prompt no suggesion
+      prompt = `evaluate the sentiment of the customer on this interaction and tell me how the customer feels in two lines max using text and also an emoji  : ${spokenInput}`;
+   */
+
+  //prompt that provides suggestion to the agent as well as sentiment analysis
+ prompt = `evaluate the sentiment of the customer on this interaction and tell me how the customer feels in two lines max using text and also an emoji : ${spokenInput} ,after the emoji provide a suggestion to the agent in terms of how to handle the conversation based on the sentimet evaluation, add it in a new sentence leaving a line`;
+   
+    }
+
     // Sending a request to the OpenAI API to create a completion based on the prompt
  
  //if it is not set or chats with gpt use the gpt syntax
@@ -119,5 +127,4 @@ else
 }
 
   });
-  
   

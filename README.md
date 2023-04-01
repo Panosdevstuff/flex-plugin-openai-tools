@@ -73,8 +73,13 @@ twilio profiles:use yourprofilename
 
 use twilio ``` flex:plugins:start ``` (inside your plugin dir) to test the plugin locally.
 
-to deploy the plugin on your live flex instance (see WIP discalimer) you will need to use 
 
+
+## Disclaimer Work in Progress :
+
+Please note that the plugin is a work in progress and may contain bugs, errors, or other issues.  No guarantees as to its functionality or suitability for your specific use case.
+
+The program is provided 'as is' and without warranty. Neither the author nor any contributors to the program will be liable for any damages resulting from its use. This software is intended to demonstrate the capabilities of flex and has not been tested live. If you are considering deploying this plugin on your live flex instance, please be aware that it is a work in progress and may have unforeseen issues or bugs. By using this software, you acknowledge that you do so at your own risk and that neither the author nor any contributors to the program are liable for any damages that may result."
 
 
 Build, deploy and create a new major version of the plugin
@@ -82,9 +87,3 @@ Build, deploy and create a new major version of the plugin
 
  Create a configuration and a release with the new version of the plugin
 ``` twilio flex:plugins:release ``` (Copy the message that you will get on the prompt)
-
-## Work in Progress Disclaimer:
-
-Please note that the plugin is a work in progress and may contain bugs, errors, or other issues.  No guarantees as to its functionality or suitability for your specific use case
-
-.
