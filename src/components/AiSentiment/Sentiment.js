@@ -47,9 +47,9 @@ const Sentiment = ({ }) => {
          
     
         try {
-          
+          setIsLoading(true);
            let sentimentResult= await fetchOpenAIResponse(transcript, 'sentiment');
-           setIsLoading(true);
+           
     
           //temporary hack to handle long transcripts , need to switch to post requests or cut down the length to more vars
           if (sentimentResult=='431')

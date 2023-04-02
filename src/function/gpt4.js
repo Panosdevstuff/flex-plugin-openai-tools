@@ -68,12 +68,37 @@ if (requestType === "sentiment") {
 
     // Sending a request to the OpenAI API to create a completion based on the prompt
  
- //if it is not set or chats with gpt use the gpt syntax
-if (API_MODEL.startsWith('gpt-') || !API_MODEL ) {
+ //Model has to be set under ennvirmental variable using API_MODEL and model name from openapi
+ //if it is not set it will default to gpt-3.5-turbo
+
+if ( !API_MODEL ) {
 
 
  openai.createChatCompletion(({ 
-    model: "gpt-4",
+    model: "gpt-3.5-turbo",
+    messages: [{role: "user", content: prompt}], 
+    
+  }))
+         .then(completion => {
+        // Extracting the summary from the OpenAI API response
+        const summary = completion.data.choices[0].message.content;
+        response.appendHeader('Content-Type', 'application/json');
+        response.setBody({ summary })
+        callback(null, response);
+      })
+      .catch(error => {
+        response.appendHeader('Content-Type', 'plain/text');
+        response.setBody(error.message);
+        response.setStatusCode(500);
+        callback(null, response);
+      });
+}
+
+else if (API_MODEL.startsWith('gpt-')  ) {
+
+
+ openai.createChatCompletion(({ 
+    model: API_MODEL,
     messages: [{role: "user", content: prompt}], 
     
   }))
@@ -93,8 +118,9 @@ if (API_MODEL.startsWith('gpt-') || !API_MODEL ) {
 }
 else if (API_MODEL.startsWith('text-'))
 {
+  //default model is text-davinci-003 
   openai.createCompletion({
-    model: "text-davinci-003",
+    model: "model: API_MODEL",
      prompt,
     temperature: 0.7,
         max_tokens: 1000,
@@ -127,4 +153,5 @@ else
 }
 
   });
+  
   

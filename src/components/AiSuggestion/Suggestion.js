@@ -25,7 +25,10 @@ const [isLoading, setIsLoading] = useState(false);
   if (process.env.REACT_APP_CONTEXT) {
    
     context = process.env.REACT_APP_CONTEXT;
+   
     context= context.replace(/[^a-zA-Z0-9 ]/g, '');
+    
+   
   }
 
 
@@ -38,7 +41,7 @@ const [isLoading, setIsLoading] = useState(false);
     const lastCustomerMessageIndex = messages.slice().reverse().findIndex(m => !m.isFromMe);
     if (lastCustomerMessageIndex >= 0) {
       const lastCustomerMessage = messages[messages.length - 1 - lastCustomerMessageIndex];
-      setLastCustomerMessage(lastCustomerMessage.source.body);
+      setLastCustomerMessage(lastCustomerMessage.source.body.replace(/\s+/g, ' ').trim().replace(/[^a-zA-Z0-9 ]/g, ''));
     } else {
       setLastCustomerMessage("");
     }
