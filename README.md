@@ -6,9 +6,14 @@ We will demonstrate the Flex-OpenAI plugin I created  with three powerful use ca
 2. 	AI Summary – provides the ability to summarize text that exceeds a user-defined character limit. This can be helpful for agents who must read through a lengthy and occasionally complicated message, and should enable them to understand the message's main points before responding. 
 3. 	AI Sentiment Analysis : This function analyzes a message's sentiment, enabling agents to estimate the emotional state of a client from their messages. It enables agents to react accordingly in circumstances where the client is upset or frustrated.  Each feature within the plugin can be enabled or disabled accordingly 
 
+
+![openai480](https://user-images.githubusercontent.com/108264826/231243969-a38d9233-d3a7-4120-948a-d50a6bd2001e.gif)
+
 #  Twilio Flex Plugin config
 
 Twilio Flex Plugins allow you to customize the appearance and behavior of [Twilio Flex](https://www.twilio.com/flex). If you want to learn more about the capabilities and how to use the API, check out our [Flex documentation](https://www.twilio.com/docs/flex).
+
+
 
 
 
