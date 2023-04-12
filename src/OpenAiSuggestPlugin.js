@@ -24,13 +24,8 @@ export default class OpenAiSuggestPlugin extends FlexPlugin {
 
   async init(flex, manager) {
    
-
-    flex.ViewCollection.Content.add(
-      <flex.View name="my-custom-page" key="my-custom-page-key">
-        <div>My custom page</div>
-      </flex.View>
-    );
-
+   
+    
     flex.setProviders({
       PasteThemeProvider: CustomizationProvider,
     });
@@ -44,9 +39,10 @@ export default class OpenAiSuggestPlugin extends FlexPlugin {
     flex.MessageBubble.Content.add(<SummaryButton key="button-in-bubble"></SummaryButton>);
     flex.MessageBubble.Content.add(<Summary key="summary-in-bubble"></Summary>);
 
-    flex.AgentDesktopView.Panel1.Content.add(<CustomTaskList key="MessageBubbleButtonPlugin-component" />, options);
+  
 
-
+   
+    
 
   }
 }
